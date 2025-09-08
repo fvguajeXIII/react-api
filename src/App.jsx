@@ -37,6 +37,7 @@ function ActorCard({ actor }) {
 
 function App() {
   const [actors, setActors] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     fetch('https://lanciweb.github.io/demo/api/actors/')
@@ -50,11 +51,30 @@ function App() {
       });
   }, []);
 
+  const filteredActors = actors.filter(actor =>
+    actor.name.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <div>
       <h1>Elenco Attori</h1>
+      <input
+        type="text"
+        placeholder="Cerca per nome..."
+        value={search}
+        onChange={e => setSearch(e.target.value)}
+        style={{
+          padding: '8px 12px',
+          margin: '16px auto',
+          display: 'block',
+          borderRadius: '8px',
+          border: '1px solid #a5b4fc',
+          fontSize: '1em',
+          width: '220px',
+        }}
+      />
       <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
-        {actors.map(actor => (
+        {filteredActors.map(actor => (
           <ActorCard key={actor.name} actor={actor} />
         ))}
       </div>
