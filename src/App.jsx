@@ -1,22 +1,32 @@
 import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function ActorCard({ actor }) {
   return (
-    <div className="actor-card" style={{border: '1px solid #ccc', borderRadius: '8px', padding: '16px', margin: '16px', maxWidth: '350px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)'}}>
-      <img src={actor.image} alt={actor.name} style={{width: '100%', borderRadius: '8px'}} />
-      <h2>{actor.name}</h2>
-      <p><strong>Anno di nascita:</strong> {actor.birth_year}</p>
-      <p><strong>Nazionalità:</strong> {actor.nationality}</p>
-      <p><strong>Biografia:</strong> {actor.biography}</p>
+    <div className="actor-card" style={{
+      background: 'linear-gradient(135deg, #f8fafc 60%, #e0e7ff 100%)',
+      border: '1px solid #a5b4fc',
+      borderRadius: '16px',
+      padding: '24px',
+      margin: '16px',
+      maxWidth: '340px',
+      boxShadow: '0 4px 16px rgba(100,100,200,0.12)',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      fontFamily: 'system-ui, sans-serif',
+    }}>
+      <img src={actor.image} alt={actor.name} style={{width: '120px', height: '120px', objectFit: 'cover', borderRadius: '50%', marginBottom: '16px', border: '3px solid #6366f1'}} />
+      <h2 style={{color: '#3730a3', marginBottom: '8px'}}>{actor.name}</h2>
+      <p style={{margin: '4px 0'}}><strong>Anno di nascita:</strong> {actor.birth_year}</p>
+      <p style={{margin: '4px 0'}}><strong>Nazionalità:</strong> {actor.nationality}</p>
+      <p style={{margin: '8px 0', fontSize: '0.95em', color: '#334155'}}><strong>Biografia:</strong> {actor.biography}</p>
       {actor.awards && actor.awards.length > 0 && (
-        <div>
-          <strong>Riconoscimenti:</strong>
-          <ul>
+        <div style={{marginTop: '8px', width: '100%'}}>
+          <strong style={{color: '#6366f1'}}>Riconoscimenti:</strong>
+          <ul style={{paddingLeft: '18px', margin: '6px 0'}}>
             {actor.awards.map((award, idx) => (
-              <li key={idx}>{award}</li>
+              <li key={idx} style={{fontSize: '0.95em', color: '#64748b'}}>{award}</li>
             ))}
           </ul>
         </div>
